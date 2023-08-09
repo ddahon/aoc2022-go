@@ -6,6 +6,7 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+	"time"
 )
 
 type move struct {
@@ -15,6 +16,7 @@ type move struct {
 }
 
 func main() {
+    start := time.Now()
     f, err := os.Open("input")
     if err != nil {
         panic(err)
@@ -38,6 +40,8 @@ func main() {
 
     res := execute_moves(parse_crates(crates), parse_moves(moves))
     fmt.Println(first_row(res))
+    elapsed := time.Since(start)
+    fmt.Println("Took: %s", elapsed)
 }
 
 func parse_crates(crates []string) []string {
